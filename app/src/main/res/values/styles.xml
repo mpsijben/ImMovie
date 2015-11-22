@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/movie_green</item>
+        <item name="colorPrimaryDark">@color/movie_dark_green</item>
+        <!-- Customize your theme here. -->
+        <item name="actionBarStyle">@style/ActionBar.Solid.Sunshine.NoTitle</item>
+    </style>
+    <style name="ActionBar.Solid.Sunshine.NoTitle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="displayOptions">useLogo|showHome</item>
+
+    </style>
+</resources>
