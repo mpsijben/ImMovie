@@ -32,9 +32,18 @@ public class MovieFragment extends Fragment implements AsyncResponse {
     }
 
     public MovieFragment() {
+    }
+
+    public void LoadMovies()
+    {
+        LoadMovies("popularity.desc");
+    }
+
+    public void LoadMovies(String sort)
+    {
         WebRequestMoviesTask task = new WebRequestMoviesTask();
         task.delegate = this;
-        task.execute();
+        task.execute(sort);
     }
 
     @Override
@@ -60,7 +69,7 @@ public class MovieFragment extends Fragment implements AsyncResponse {
                 startActivity(intent);
             }
         });
-
+        LoadMovies();
 
         return rootView;
     }

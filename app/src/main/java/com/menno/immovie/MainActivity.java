@@ -1,6 +1,7 @@
 package com.menno.immovie;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +29,16 @@ public class MainActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.menuSortPopularity) {
+            FragmentManager fm = getSupportFragmentManager();
+            MovieFragment fragment = (MovieFragment)fm.findFragmentById(R.id.fragment);
+            fragment.LoadMovies();
+            return true;
+        }
+        else if(id == R.id.menuSortRating) {
+            FragmentManager fm = getSupportFragmentManager();
+            MovieFragment fragment = (MovieFragment)fm.findFragmentById(R.id.fragment);
+            fragment.LoadMovies("vote_average.desc");
             return true;
         }
 
