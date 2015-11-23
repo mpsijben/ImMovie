@@ -36,7 +36,7 @@ public class WebRequestMoviesTask extends AsyncTask<String, Void, ArrayList<Movi
 
         for(int i = 0; i < movieArray.length(); i++) {
             JSONObject movieObject = movieArray.getJSONObject(i);
-            movies.add(new Movie(movieObject.getInt("id"),movieObject.getString("title"),movieObject.getString("overview"),movieObject.getString("poster_path"),movieObject.getInt("vote_average"),movieObject.getString("release_date")));
+            movies.add(new Movie(movieObject.getInt("id"),movieObject.getString("title"),movieObject.getString("overview"),movieObject.getString("poster_path"),movieObject.getInt("vote_average"),movieObject.getString("release_date"),movieObject.getString("backdrop_path")));
 
         }
 

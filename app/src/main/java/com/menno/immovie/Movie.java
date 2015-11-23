@@ -10,8 +10,9 @@ public class Movie {
     String imageUrl;
     int rating;
     String releaseDate;
+    String imageMenuUrl;
 
-    public Movie(int id, String name, String overview, String imageUrl, int rating, String releaseDate)
+    public Movie(int id, String name, String overview, String imageUrl, int rating, String releaseDate, String imageMenuUrl)
     {
         this.id = id;
         this.name = name;
@@ -19,5 +20,8 @@ public class Movie {
         this.imageUrl = imageUrl;
         this.rating = rating;
         this.releaseDate = releaseDate;
+        this.imageMenuUrl = imageMenuUrl;
     }
+
+
 }
