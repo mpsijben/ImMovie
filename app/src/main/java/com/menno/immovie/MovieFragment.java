@@ -47,9 +47,23 @@ public class MovieFragment extends Fragment implements AsyncResponse {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState){
+        outState.putParcelableArrayList("movies", movies);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+        if(savedInstanceState == null || !savedInstanceState.containsKey("movies")){
+            LoadMovies();
+        }
+        else
+        {
+            movies = savedInstanceState.getParcelableArrayList("movies");
+        }
 
         mMovieAdapter = new MovieAdapter(getActivity(), movies);
 
@@ -65,11 +79,13 @@ public class MovieFragment extends Fragment implements AsyncResponse {
                 Movie movie = mMovieAdapter.getItem(position);
 
                 Intent intent = new Intent(getActivity(), MovieInfoActivity.class)
-                        .putExtra(Intent.EXTRA_TEXT, movie.name);
+                        .putExtra(Intent.EXTRA_TEXT, movie);
                 startActivity(intent);
             }
         });
-        LoadMovies();
+
+
+
 
         return rootView;
     }

@@ -3,11 +3,9 @@ package com.menno.immovie;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -18,53 +16,31 @@ public class MovieInfoActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_info2);
+        setContentView(R.layout.activity_movie_info);
 
         Intent intent = getIntent();
         TextView textView = (TextView) findViewById(R.id.myImageViewText);
-        textView.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
+
+        Bundle b = intent.getExtras();
+        Movie movie = b.getParcelable(Intent.EXTRA_TEXT);
+        textView.setText(movie.name);
 
         ImageView iconView = (ImageView) findViewById(R.id.myImageView);
         if(iconView != null) {
+            Picasso.with(this).load("http://image.tmdb.org/t/p/w342" + movie.imageMenuUrl).fit().into(iconView);
 
-            Picasso.with(this)
-                    .load("http://image.tmdb.org/t/p/w342//3Kgu3ys6W6UZWWFty7rlTWgST63.jpg")
-                    .fit()
-                    .into(iconView, new Callback() {
-
-                        @Override
-                        public void onSuccess() {
-                            Log.e("s", "in onCreate");
-
-                        }
-
-                        @Override
-                        public void onError() {
-
-                            Log.e("r", "in onCreate");
-                        }
-                    });
         }
-
         ImageView posterView = (ImageView) findViewById(R.id.posterimage);
+        Picasso.with(this).load("http://image.tmdb.org/t/p/w185" + movie.imageUrl).fit().into(posterView);
 
-        Picasso.with(this)
-                .load("http://image.tmdb.org/t/p/w185///7SGGUiTE6oc2fh9MjIk5M00dsQd.jpg")
-                .fit()
-                .into(posterView, new Callback() {
+        TextView overviewText = (TextView) findViewById(R.id.movie_overview);
+        overviewText.setText(movie.overview);
 
-                    @Override
-                    public void onSuccess() {
-                        Log.e("s", "in onCreate");
+        TextView datumText = (TextView) findViewById(R.id.movie_datum);
+        datumText.setText(movie.releaseDate);
 
-                    }
-
-                    @Override
-                    public void onError() {
-
-                        Log.e("r", "in onCreate");
-                    }
-                });
+        TextView scoreText = (TextView) findViewById(R.id.movie_score);
+        scoreText.setText(movie.rating + "/10");
 
     }
 }

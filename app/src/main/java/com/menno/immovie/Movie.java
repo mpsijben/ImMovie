@@ -1,9 +1,12 @@
 package com.menno.immovie;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Menno Sijben on 21-11-2015.
  */
-public class Movie {
+public class Movie  implements Parcelable {
     int id;
     String name;
     String overview;
@@ -23,5 +26,43 @@ public class Movie {
         this.imageMenuUrl = imageMenuUrl;
     }
 
+    private Movie(Parcel in)
+    {
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.overview = in.readString();
+        this.imageUrl = in.readString();
+        this.rating = in.readInt();
+        this.releaseDate = in.readString();
+        this.imageMenuUrl = in.readString();
+    }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.id);
+        parcel.writeString(this.name);
+        parcel.writeString(this.overview);
+        parcel.writeString(this.imageUrl);
+        parcel.writeInt(this.rating);
+        parcel.writeString(this.releaseDate);
+        parcel.writeString(this.imageMenuUrl);
+    }
+
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel parcel) {
+            return new Movie(parcel);
+        }
+
+        @Override
+        public Movie[] newArray(int i) {
+            return new Movie[i];
+        }
+
+    };
 }
