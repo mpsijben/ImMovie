@@ -66,7 +66,7 @@ public class WebRequestMoviesTask extends AsyncTask<String, Void, ArrayList<Movi
 
             Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
                     .appendQueryParameter(SORT_PARAM, sortString)
-                    .appendQueryParameter(API_PARAM,BuildConfig.MOVIE_API_KEY)
+                    .appendQueryParameter(API_PARAM, BuildConfig.MOVIE_API_KEY)
                     .build();
 
             URL realUrl = new URL(builtUri.toString());

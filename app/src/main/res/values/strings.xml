@@ -3,5 +3,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+
+    <string name="title_activity_main">I\'m movie</string>
     <string name="title_activity_movieinfo">Info</string>
 </resources>

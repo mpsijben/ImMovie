@@ -1,7 +1,6 @@
 package com.menno.immovie;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,14 +40,10 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
                @Override
                public void onSuccess() {
-                   Log.e("s", "in onCreate");
-
                }
 
                @Override
                public void onError() {
-
-                   Log.e("r", "in onCreate");
                }
            });
 
