@@ -4,6 +4,8 @@
 <android.support.percent.PercentRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MovieFragmentInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -31,16 +33,16 @@
         app:layout_marginLeftPercent="2%"/>
 
     <TextView
-    android:id="@+id/movie_datum"
-    android:layout_width="0dp"
-    android:layout_height="35dp"
-    android:layout_below="@+id/myImageViewText"
-    android:layout_toRightOf="@+id/posterimage"
-    android:text="23-11-2015"
-    android:textSize="45px"
-    app:layout_marginTopPercent="2%"
-    app:layout_widthPercent="30%"
-    app:layout_marginLeftPercent="2%"/>
+        android:id="@+id/movie_datum"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/myImageViewText"
+        android:layout_toRightOf="@+id/posterimage"
+        android:text="23-11-2015"
+        android:textSize="45px"
+        app:layout_marginTopPercent="2%"
+        app:layout_widthPercent="30%"
+        app:layout_marginLeftPercent="2%"/>
 
     <TextView
         android:id="@+id/movie_score"
