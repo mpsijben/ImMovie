@@ -93,8 +93,7 @@ public class WebRequestMoviesTask extends AsyncTask<String, Void, ArrayList<Movi
         }
         catch (IOException e) {
             Log.e(LOG_TAG, "Error ", e);
-            // If the code didn't successfully get the weather data, there's no point in attemping
-            // to parse it.
+
             return null;
         } finally {
             if (urlConnection != null) {
