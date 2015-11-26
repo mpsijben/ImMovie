@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MovieFragmentInfo"
@@ -21,39 +22,27 @@
 
     <TextView
         android:id="@+id/myImageViewText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/myImageView"
-        android:layout_alignTop="@id/myImageView"
-        android:layout_alignRight="@id/myImageView"
-        android:layout_alignBottom="@id/myImageView"
-        android:layout_margin="1dp"
-        android:gravity="center"
-        android:text="Hello"
-        android:textSize="100px"
-        android:textColor="@color/white" />
-
-    <ImageView
-        android:id="@+id/posterimage"
-        android:layout_width="110dp"
-        android:layout_height="165dp"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
         android:layout_below="@+id/myImageView"
-        android:background="@color/white"
+        android:layout_toRightOf="@+id/posterimage"
+        android:text="Title"
+        android:textSize="45px"
         app:layout_marginTopPercent="2%"
+        app:layout_widthPercent="30%"
         app:layout_marginLeftPercent="2%"/>
 
     <TextView
         android:id="@+id/movie_datum"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_below="@+id/myImageView"
+        android:layout_height="35dp"
+        android:layout_below="@+id/myImageViewText"
         android:layout_toRightOf="@+id/posterimage"
         android:text="23-11-2015"
         android:textSize="45px"
         app:layout_marginTopPercent="2%"
-        app:layout_heightPercent="5%"
         app:layout_widthPercent="30%"
-        app:layout_marginLeftPercent="5%"/>
+        app:layout_marginLeftPercent="2%"/>
 
     <TextView
         android:id="@+id/movie_score"
@@ -63,21 +52,24 @@
         android:layout_toRightOf="@+id/posterimage"
         android:text="8/10"
         android:textSize="34px"
-        android:layout_marginTop="2dp"
+        app:layout_marginTopPercent="2%"
         app:layout_heightPercent="5%"
         app:layout_widthPercent="30%"
-        app:layout_marginLeftPercent="5%"/>
+        app:layout_marginLeftPercent="2%"/>
 
     <TextView
         android:id="@+id/movie_overview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_below="@+id/posterimage"
+        android:layout_below="@+id/movie_score"
+        android:layout_toRightOf="@+id/posterimage"
         android:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world."
         android:textSize="34px"
         app:layout_marginTopPercent="2%"
         app:layout_heightPercent="45%"
-        app:layout_widthPercent="96%"
+        app:layout_widthPercent="80%"
         app:layout_marginLeftPercent="2%"/>
 
 </android.support.percent.PercentRelativeLayout>
+
+

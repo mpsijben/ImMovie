@@ -5,9 +5,7 @@
         <item name="colorPrimary">@color/movie_green</item>
         <item name="colorPrimaryDark">@color/movie_dark_green</item>
         <!-- Customize your theme here. -->
-        <item name="actionBarStyle">@style/ActionBar.Solid.Sunshine.NoTitle</item>
-    </style>
-    <style name="ActionBar.Solid.Sunshine.NoTitle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    </style><style name="ActionBar.Solid.Sunshine.NoTitle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
 
 
     </style>
