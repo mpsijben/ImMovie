@@ -13,6 +13,15 @@ public class MovieInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info);
 
+        if (savedInstanceState == null) {
+
+            Bundle arguments = new Bundle();
+            arguments.putParcelable(MovieFragmentInfo.MOVIETAG, getIntent().getExtras().getParcelable(MovieFragmentInfo.MOVIETAG));
+            MovieFragmentInfo fragment = new MovieFragmentInfo();
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentInfo,fragment).commit();
+
+        }
 
 
     }

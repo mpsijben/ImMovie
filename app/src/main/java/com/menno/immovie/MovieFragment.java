@@ -1,6 +1,5 @@
 package com.menno.immovie;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -29,6 +28,15 @@ public class MovieFragment extends Fragment implements AsyncResponse {
         for(Movie movie : output) {
             mMovieAdapter.add(movie);
         }
+
+        if(((MainActivity)getActivity()).tableMode) {
+            ((Callback) getActivity()).onItemSelected(output.get(0));
+        }
+    }
+
+    public interface Callback {
+        public void onItemSelected(Movie movie);
+
     }
 
     public MovieFragment() {
@@ -78,15 +86,9 @@ public class MovieFragment extends Fragment implements AsyncResponse {
                 view.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
                 Movie movie = mMovieAdapter.getItem(position);
 
-                Intent intent = new Intent(getActivity(), MovieInfoActivity.class)
-                        .putExtra(Intent.EXTRA_TEXT, movie);
-                startActivity(intent);
+                ((Callback) getActivity()).onItemSelected(movie);
             }
         });
-
-
-
-
         return rootView;
     }
 }
