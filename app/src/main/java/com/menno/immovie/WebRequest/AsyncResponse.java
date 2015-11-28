@@ -1,6 +1,6 @@
 package com.menno.immovie.WebRequest;
 
-import com.menno.immovie.Movie;
+import com.menno.immovie.Objects.Movie;
 
 import java.util.ArrayList;
 

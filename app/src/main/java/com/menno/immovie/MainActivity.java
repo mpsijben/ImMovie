@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.menno.immovie.Objects.Movie;
+
 /**
  * Created by Menno Sijben on 21-11-2015.
  */

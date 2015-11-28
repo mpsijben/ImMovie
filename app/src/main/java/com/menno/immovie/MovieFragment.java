@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.menno.immovie.Objects.Movie;
 import com.menno.immovie.WebRequest.AsyncResponse;
 import com.menno.immovie.WebRequest.MoviesTask;
 import com.menno.immovie.WebRequest.TrailerReviewTask;

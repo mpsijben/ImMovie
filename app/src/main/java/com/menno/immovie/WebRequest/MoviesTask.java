@@ -3,7 +3,7 @@ package com.menno.immovie.WebRequest;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.menno.immovie.Movie;
+import com.menno.immovie.Objects.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;

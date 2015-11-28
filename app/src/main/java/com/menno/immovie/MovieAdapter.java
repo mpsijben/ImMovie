@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import com.menno.immovie.Objects.Movie;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 

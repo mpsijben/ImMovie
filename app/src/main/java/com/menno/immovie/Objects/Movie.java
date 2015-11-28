@@ -1,7 +1,9 @@
-package com.menno.immovie;
+package com.menno.immovie.Objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.ArrayList;
 
 /**
  * Created by Menno Sijben on 21-11-2015.
@@ -14,6 +16,8 @@ public class Movie  implements Parcelable {
     public int rating;
     public String releaseDate;
     public String imageMenuUrl;
+    public ArrayList<Review> reviews;
+    public ArrayList<Trailer> trailers;
 
     public Movie(int id, String name, String overview, String imageUrl, int rating, String releaseDate, String imageMenuUrl)
     {
