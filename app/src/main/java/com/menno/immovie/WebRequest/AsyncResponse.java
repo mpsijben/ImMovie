@@ -1,4 +1,6 @@
-package com.menno.immovie;
+package com.menno.immovie.WebRequest;
+
+import com.menno.immovie.Movie;
 
 import java.util.ArrayList;
 
@@ -7,4 +9,5 @@ import java.util.ArrayList;
  */
 public interface AsyncResponse {
     void OnReceiveMovies(ArrayList<Movie> output);
+    void OnReveiveTrailerReview(ArrayList<Movie> output);
 }

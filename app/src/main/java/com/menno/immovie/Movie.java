@@ -7,13 +7,13 @@ import android.os.Parcelable;
  * Created by Menno Sijben on 21-11-2015.
  */
 public class Movie  implements Parcelable {
-    int id;
-    String name;
-    String overview;
-    String imageUrl;
-    int rating;
-    String releaseDate;
-    String imageMenuUrl;
+    public int id;
+    public String name;
+    public String overview;
+    public String imageUrl;
+    public int rating;
+    public String releaseDate;
+    public String imageMenuUrl;
 
     public Movie(int id, String name, String overview, String imageUrl, int rating, String releaseDate, String imageMenuUrl)
     {
