@@ -1,9 +1,8 @@
-package com.menno.immovie;
+package com.menno.immovie.Fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.menno.immovie.ContentProvider.FavoriteMovieDelete;
-import com.menno.immovie.ContentProvider.FavoriteMovieStore;
+import com.menno.immovie.DB.FavoriteMovieDelete;
+import com.menno.immovie.DB.FavoriteMovieLoader;
+import com.menno.immovie.DB.FavoriteMovieStore;
+import com.menno.immovie.DB.IsFavoriteResponse;
 import com.menno.immovie.Objects.Movie;
 import com.menno.immovie.Objects.Review;
 import com.menno.immovie.Objects.Trailer;
+import com.menno.immovie.R;
 import com.menno.immovie.WebRequest.TrailerReviewResponse;
 import com.menno.immovie.WebRequest.TrailerReviewTask;
 import com.squareup.picasso.Picasso;
@@ -28,8 +30,8 @@ import java.util.ArrayList;
 /**
  * Created by Menno on 25-11-2015.
  */
-public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse {
-    static String MOVIETAG = "MTAG";
+public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse, IsFavoriteResponse {
+    public static String MOVIETAG = "MTAG";
 
     private Movie movie;
     private ArrayList<Trailer> trailers;
@@ -37,6 +39,34 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
     private View view;
 
     public MovieFragmentInfo() {
+    }
+
+    public void OnIsFavorite(Boolean bool)
+    {
+
+        Button button = (Button) view.findViewById(R.id.favorite);
+
+
+        if(bool) {
+            button.setText("UNFAVORITE");
+        }
+        else {
+            button.setText("Favorite MOVIE");
+        }
+        button.setVisibility(View.VISIBLE);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(((Button) v).getText().equals("Favorite MOVIE")) {
+                    ((Button) v).setText("UNFAVORITE");
+                    new FavoriteMovieStore(getActivity()).execute(movie);
+                }
+                else {
+                    ((Button) v).setText("Favorite MOVIE");
+                    new FavoriteMovieDelete(getActivity()).execute(movie);
+                }
+            }
+        });
     }
 
     public void OnReveiveTrailerReview(Movie output)
@@ -120,25 +150,6 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
         ll.addView(valueTV);
         ll.addView(value2);
         linearLayout.addView(ll);
-
-        Button button = (Button) view.findViewById(R.id.favorite);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.e("ee", ((Button)v).getText().toString());
-                if(!true)
-                {
-                    ((Button)v).setText("UNFAVORITE");
-                    new FavoriteMovieStore(getActivity()).execute(movie);
-                }
-                else
-                {
-                    ((Button)v).setText("Favorite MOVIE");
-                    new FavoriteMovieDelete(getActivity()).execute(movie);
-                }
-                //movie.isFavorite = !movie.isFavorite;
-                // Do something in response to button click
-            }
-        });
     }
 
     public void loadMovie()
@@ -186,6 +197,10 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
             TrailerReviewTask task = new TrailerReviewTask();
             task.delegate = this;
             task.execute(movie);
+
+            FavoriteMovieLoader load = new FavoriteMovieLoader(getActivity());
+            load.delegate = this;
+            load.execute(movie);
         }
 
         loadMovie();

@@ -1,4 +1,4 @@
-package com.menno.immovie.ContentProvider;
+package com.menno.immovie.DB;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import com.menno.immovie.ContentProvider.MovieContract;
 import com.menno.immovie.Objects.Movie;
 
 /**
@@ -13,6 +14,7 @@ import com.menno.immovie.Objects.Movie;
  */
 public class FavoriteMovieLoader extends AsyncTask<Movie, Void, Boolean> {
 
+    public IsFavoriteResponse delegate = null;
     private Activity activity;
 
     public  FavoriteMovieLoader(Activity activity) {
@@ -28,12 +30,18 @@ public class FavoriteMovieLoader extends AsyncTask<Movie, Void, Boolean> {
         String where = "_ID=?";
         String[] args = new String[] { Integer.toString(movie.id) };
 
-        Cursor cursor = contentResolver.query(contentUri, null, where, args, "");
+        String[] mProjection =
+        {
+                MovieContract._ID
+
+        };
+
+        Cursor cursor = contentResolver.query(contentUri, mProjection, where, args, "");
         if (null == cursor) {
             return false;
         }
 
-        if(cursor.getCount() > 1 )
+        if(cursor.getCount() > 0 )
         {
             isFavorite = true;
         }
@@ -44,7 +52,7 @@ public class FavoriteMovieLoader extends AsyncTask<Movie, Void, Boolean> {
 
     @Override
     protected void onPostExecute(Boolean isFavorite) {
-
+        delegate.OnIsFavorite(isFavorite);
     }
 
 }

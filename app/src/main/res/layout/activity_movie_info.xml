@@ -4,5 +4,5 @@
     android:id="@+id/fragmentInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.menno.immovie.MovieFragmentInfo"
+    tools:context="com.menno.immovie.Fragments.MovieFragmentInfo"
     tools:ignore="MergeRootFrame" />

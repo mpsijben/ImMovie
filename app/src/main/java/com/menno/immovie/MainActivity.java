@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.menno.immovie.Fragments.MovieFragment;
+import com.menno.immovie.Fragments.MovieFragmentInfo;
 import com.menno.immovie.Objects.Movie;
 
 /**

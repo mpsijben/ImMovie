@@ -1,4 +1,4 @@
-package com.menno.immovie.ContentProvider;
+package com.menno.immovie.DB;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import com.menno.immovie.ContentProvider.MovieContract;
 import com.menno.immovie.Objects.Movie;
 
 /**

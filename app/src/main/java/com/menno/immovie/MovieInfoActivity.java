@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.widget.ShareActionProvider;
 
+import com.menno.immovie.Fragments.MovieFragmentInfo;
+
 /**
  * Created by Menno Sijben on 21-11-2015.
  */

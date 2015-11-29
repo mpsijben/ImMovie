@@ -1,4 +1,4 @@
-package com.menno.immovie;
+package com.menno.immovie.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,7 +10,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.menno.immovie.MovieAdapter;
 import com.menno.immovie.Objects.Movie;
+import com.menno.immovie.R;
 import com.menno.immovie.WebRequest.MovieResponse;
 import com.menno.immovie.WebRequest.MoviesTask;
 
