@@ -35,7 +35,6 @@ public class MovieFragment extends Fragment implements MovieResponse {
 
     public interface Callback {
         public void onItemSelected(Movie movie);
-
     }
 
     public MovieFragment() {
@@ -57,18 +56,11 @@ public class MovieFragment extends Fragment implements MovieResponse {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
-        if(savedInstanceState == null)
-        {
-            Log.e("e", "eeer");
-        }
-
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState){
         outState.putParcelableArrayList("movies", movies);
-        Log.e("ja", "ja2");
         super.onSaveInstanceState(outState);
     }
 
@@ -79,11 +71,9 @@ public class MovieFragment extends Fragment implements MovieResponse {
 
         if(savedInstanceState == null || !savedInstanceState.containsKey("movies")){
             LoadMovies();
-            Log.e("e", "er");
         }
         else
         {
-
             movies = savedInstanceState.getParcelableArrayList("movies");
         }
 

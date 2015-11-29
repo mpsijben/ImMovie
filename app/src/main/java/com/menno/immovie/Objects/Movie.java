@@ -18,7 +18,6 @@ public class Movie  implements Parcelable {
     public String imageMenuUrl;
     public ArrayList<Review> reviews;
     public ArrayList<Trailer> trailers;
-    public boolean DidCheckTrailersAndReview = false;
 
     public Movie(int id, String name, String overview, String imageUrl, int rating, String releaseDate, String imageMenuUrl)
     {
