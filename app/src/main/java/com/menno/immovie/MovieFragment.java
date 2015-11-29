@@ -11,9 +11,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.menno.immovie.Objects.Movie;
-import com.menno.immovie.WebRequest.AsyncResponse;
+import com.menno.immovie.WebRequest.MovieResponse;
 import com.menno.immovie.WebRequest.MoviesTask;
-import com.menno.immovie.WebRequest.TrailerReviewTask;
 
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ import java.util.ArrayList;
  * Created by Menno Sijben on 21-11-2015.
  */
 
-public class MovieFragment extends Fragment implements AsyncResponse {
+public class MovieFragment extends Fragment implements MovieResponse {
 
     private MovieAdapter mMovieAdapter;
 
@@ -30,21 +29,8 @@ public class MovieFragment extends Fragment implements AsyncResponse {
     public void OnReceiveMovies(ArrayList<Movie> output){
         Log.e("s", Integer.toString(output.size()));
         mMovieAdapter.clear();
-        //for(Movie movie : output) {
-        //    mMovieAdapter.add(movie);
-        //}
+
         mMovieAdapter.addAll(output);
-
-        TrailerReviewTask task = new TrailerReviewTask();
-        task.delegate = this;
-        task.execute(output);
-    }
-
-    public void OnReveiveTrailerReview(ArrayList<Movie> output)
-    {
-        if(((MainActivity)getActivity()).tableMode) {
-            ((Callback) getActivity()).onItemSelected(output.get(0));
-        }
     }
 
     public interface Callback {
@@ -68,9 +54,21 @@ public class MovieFragment extends Fragment implements AsyncResponse {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+
+        if(savedInstanceState == null)
+        {
+            Log.e("e", "eeer");
+        }
+
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState){
         outState.putParcelableArrayList("movies", movies);
-
+        Log.e("ja", "ja2");
         super.onSaveInstanceState(outState);
     }
 
@@ -81,9 +79,11 @@ public class MovieFragment extends Fragment implements AsyncResponse {
 
         if(savedInstanceState == null || !savedInstanceState.containsKey("movies")){
             LoadMovies();
+            Log.e("e", "er");
         }
         else
         {
+
             movies = savedInstanceState.getParcelableArrayList("movies");
         }
 

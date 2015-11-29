@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
 <android.support.percent.PercentRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -60,16 +63,15 @@
     <TextView
         android:id="@+id/movie_overview"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_below="@+id/movie_score"
         android:layout_toRightOf="@+id/posterimage"
         android:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world."
         android:textSize="34px"
         app:layout_marginTopPercent="2%"
-        app:layout_heightPercent="45%"
         app:layout_widthPercent="80%"
         app:layout_marginLeftPercent="2%"/>
 
 </android.support.percent.PercentRelativeLayout>
 
-
+</ScrollView>

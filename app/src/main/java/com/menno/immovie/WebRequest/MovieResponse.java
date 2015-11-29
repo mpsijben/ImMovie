@@ -5,9 +5,8 @@ import com.menno.immovie.Objects.Movie;
 import java.util.ArrayList;
 
 /**
- * Created by Menno Sijben on 21-11-2015.
+ * Created by Menno on 29-11-2015.
  */
-public interface AsyncResponse {
+public interface MovieResponse {
     void OnReceiveMovies(ArrayList<Movie> output);
-    void OnReveiveTrailerReview(ArrayList<Movie> output);
 }

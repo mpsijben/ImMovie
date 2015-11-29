@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 
 public class MoviesTask extends AsyncTask<String, Void, ArrayList<Movie>> {
-    public AsyncResponse delegate = null;
+    public MovieResponse delegate = null;
     private final String LOG_TAG = MoviesTask.class.getSimpleName();
 
 

@@ -2,10 +2,8 @@ package com.menno.immovie;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,8 +15,10 @@ import com.menno.immovie.Objects.Movie;
 
 public class MainActivity extends AppCompatActivity implements MovieFragment.Callback {
 
-    public boolean tableMode = false;
+    public static boolean tableMode = false;
     private static final String INFOFRAGMENT_TAG = "INFOT";
+
+    public MovieFragment myFragment;
 
     public void onItemSelected(Movie movie)
     {
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements MovieFragment.Cal
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentInfo, fragment, INFOFRAGMENT_TAG).commit();
         }
         else {
-            Log.e("er", movie.name);
             Intent intent = new Intent(this, MovieInfoActivity.class)
                     .putExtra(MovieFragmentInfo.MOVIETAG, movie);
             startActivity(intent);
@@ -43,16 +42,18 @@ public class MainActivity extends AppCompatActivity implements MovieFragment.Cal
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
+        if (savedInstanceState == null) {
+            myFragment = new MovieFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fragmentcontainer, myFragment)
+                    .commit();
+        }
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(R.string.title_activity_main);
 
-
         tableMode = findViewById(R.id.fragmentInfo) != null;
-
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,15 +66,11 @@ public class MainActivity extends AppCompatActivity implements MovieFragment.Cal
         int id = item.getItemId();
 
         if (id == R.id.menuSortPopularity) {
-            FragmentManager fm = getSupportFragmentManager();
-            MovieFragment fragment = (MovieFragment)fm.findFragmentById(R.id.fragment);
-            fragment.LoadMovies();
+            myFragment.LoadMovies();
             return true;
         }
         else if(id == R.id.menuSortRating) {
-            FragmentManager fm = getSupportFragmentManager();
-            MovieFragment fragment = (MovieFragment)fm.findFragmentById(R.id.fragment);
-            fragment.LoadMovies("vote_average.desc");
+            myFragment.LoadMovies("vote_average.desc");
             return true;
         }
 
