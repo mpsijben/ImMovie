@@ -12,6 +12,9 @@
             <item
                 android:id="@+id/menuSortRating"
                 android:title="Sort by rating" />
+            <item
+                android:id="@+id/menuFavorite"
+                android:title="Sort by Favorite" />
         </menu>
     </item>
 

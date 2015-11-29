@@ -23,6 +23,7 @@ public class TrailerReviewTask extends AsyncTask<Movie, Void, Movie> {
     private Movie getMoviesFromJson(Movie movie)
             throws JSONException {
 
+
         String jsonTrailerReview = getTrailersAndReview(movie.id);
         JSONObject jsonObject = new JSONObject(jsonTrailerReview);
         JSONObject trailerObjects = jsonObject.getJSONObject("trailers");

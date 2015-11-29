@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity implements MovieFragment.Cal
             myFragment.LoadMovies("vote_average.desc");
             return true;
         }
+        else if(id == R.id.menuFavorite) {
+
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

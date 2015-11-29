@@ -3,15 +3,19 @@ package com.menno.immovie;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.menno.immovie.ContentProvider.FavoriteMovieDelete;
+import com.menno.immovie.ContentProvider.FavoriteMovieStore;
 import com.menno.immovie.Objects.Movie;
 import com.menno.immovie.Objects.Review;
 import com.menno.immovie.Objects.Trailer;
@@ -116,6 +120,25 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
         ll.addView(valueTV);
         ll.addView(value2);
         linearLayout.addView(ll);
+
+        Button button = (Button) view.findViewById(R.id.favorite);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.e("ee", ((Button)v).getText().toString());
+                if(!true)
+                {
+                    ((Button)v).setText("UNFAVORITE");
+                    new FavoriteMovieStore(getActivity()).execute(movie);
+                }
+                else
+                {
+                    ((Button)v).setText("Favorite MOVIE");
+                    new FavoriteMovieDelete(getActivity()).execute(movie);
+                }
+                //movie.isFavorite = !movie.isFavorite;
+                // Do something in response to button click
+            }
+        });
     }
 
     public void loadMovie()

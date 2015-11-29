@@ -19,6 +19,7 @@ public class Movie  implements Parcelable {
     public ArrayList<Review> reviews;
     public ArrayList<Trailer> trailers;
 
+
     public Movie(int id, String name, String overview, String imageUrl, int rating, String releaseDate, String imageMenuUrl)
     {
         this.id = id;

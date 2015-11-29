@@ -43,4 +43,6 @@ public class MovieInfoActivity extends AppCompatActivity {
             mShareActionProvider.setShareIntent(shareIntent);
         }
     }
+
+
 }

@@ -52,6 +52,11 @@ public class MovieFragment extends Fragment implements MovieResponse {
         task.execute(sort);
     }
 
+    public void LoadFavorites()
+    {
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {

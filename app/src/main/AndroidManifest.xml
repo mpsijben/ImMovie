@@ -25,6 +25,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.menno.immovie.MainActivity" />
         </activity>
+        <provider
+            android:name=".ContentProvider.ContentProvider"
+            android:authorities="com.menno.immovie" >
+        </provider>
     </application>
 
 </manifest>
