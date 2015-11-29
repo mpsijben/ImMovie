@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements MovieFragment.Cal
             return true;
         }
         else if(id == R.id.menuFavorite) {
-
+            myFragment.LoadFavorites();
             return true;
         }
 

@@ -2,7 +2,6 @@ package com.menno.immovie.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.menno.immovie.DB.FavoriteMoviesLoader;
+import com.menno.immovie.DB.FavoriteResponse;
 import com.menno.immovie.MovieAdapter;
 import com.menno.immovie.Objects.Movie;
 import com.menno.immovie.R;
@@ -22,17 +23,21 @@ import java.util.ArrayList;
  * Created by Menno Sijben on 21-11-2015.
  */
 
-public class MovieFragment extends Fragment implements MovieResponse {
+public class MovieFragment extends Fragment implements MovieResponse, FavoriteResponse {
 
     private MovieAdapter mMovieAdapter;
 
     ArrayList<Movie> movies = new ArrayList<Movie>();
 
     public void OnReceiveMovies(ArrayList<Movie> output){
-        Log.e("s", Integer.toString(output.size()));
         mMovieAdapter.clear();
-
         mMovieAdapter.addAll(output);
+    }
+
+    public void OnFavorite(ArrayList<Movie> movies)
+    {
+        mMovieAdapter.clear();
+        mMovieAdapter.addAll(movies);
     }
 
     public interface Callback {
@@ -56,7 +61,9 @@ public class MovieFragment extends Fragment implements MovieResponse {
 
     public void LoadFavorites()
     {
-
+        FavoriteMoviesLoader load = new FavoriteMoviesLoader(getActivity());
+        load.delegate = this;
+        load.execute();
     }
 
     @Override
