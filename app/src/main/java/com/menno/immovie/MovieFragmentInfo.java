@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.menno.immovie.Objects.Movie;
@@ -35,10 +37,11 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
 
     public void OnReveiveTrailerReview(Movie output)
     {
+        trailers = output.trailers;
+        reviews = output.reviews;
         loadTrailers();
         loadReviews();
-        LinearLayout one = (LinearLayout) getActivity().findViewById(R.id.review);
-        one.setVisibility(View.VISIBLE);
+
         //if(MainActivity.tableMode) {
         //    ((Callback) getActivity()).onItemSelected(output.get(0));
         //}
@@ -46,12 +49,73 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
 
     public void loadTrailers()
     {
+        for(int i=0; i< trailers.size(); i++) {
+            Trailer trailer = trailers.get(i);
 
+            LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.trailersInfo);
+            AddDataToView(linearLayout, trailer.getName(), trailer.getSource());
+        }
+
+        if(trailers.size() == 0)
+        {
+            LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.trailersInfo);
+            AddDataToView(linearLayout, "No trailers", "");
+        }
+
+
+        LinearLayout one = (LinearLayout) getActivity().findViewById(R.id.trailers);
+        one.setVisibility(View.VISIBLE);
     }
 
     public void loadReviews()
     {
+        for(int i=0; i< reviews.size(); i++) {
+            Review review = reviews.get(i);
 
+            LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.reviewInfo);
+            AddDataToView(linearLayout, review.getAuthor() + ":", review.getContent());
+        }
+
+        if(reviews.size() == 0)
+        {
+            LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.reviewInfo);
+            AddDataToView(linearLayout, "No reviews", "");
+        }
+
+        LinearLayout one = (LinearLayout) getActivity().findViewById(R.id.review);
+        one.setVisibility(View.VISIBLE);
+    }
+
+
+
+    private void AddDataToView(LinearLayout linearLayout, String first, String second)
+    {
+        LinearLayout ll = new LinearLayout(getActivity());
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+        //ll.setpa
+        int paddingPixel = 8;
+        float density = getActivity().getResources().getDisplayMetrics().density;
+        int paddingDp = (int)(paddingPixel * density);
+        ll.setPadding(0, paddingDp, 0, 0);
+        WindowManager.LayoutParams lParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+        ll.setLayoutParams(lParams);
+
+        TextView valueTV = new TextView(getActivity());
+        valueTV.setText(first);
+        valueTV.setLayoutParams(new TableLayout.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT, 2.5f));
+
+        TextView value2 = new TextView(getActivity());
+        value2.setText(second);
+        value2.setLayoutParams(new TableLayout.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT, 1f));
+
+        ll.addView(valueTV);
+        ll.addView(value2);
+        linearLayout.addView(ll);
     }
 
     public void loadMovie()

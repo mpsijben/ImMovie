@@ -44,6 +44,7 @@
 
         </LinearLayout>
 
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,15 +61,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Summary:"
-                    android:textStyle="bold"
-                    android:textSize="34px"/>
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/movie_overview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world."
-                    android:textSize="34px"/>
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:id="@+id/trailers"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/trailersInfo"
+                android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/movie_trailers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Trailers:"
+                    android:textStyle="bold"
+                    />
+
+
             </LinearLayout>
         </LinearLayout>
 
@@ -84,26 +110,17 @@
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/reviewInfo"
                 android:orientation="vertical" >
                 <TextView
-                    android:id="@+id/movie_trailers"
+                    android:id="@+id/movie_reviews"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Summary:"
+                    android:text="Reviews:"
                     android:textStyle="bold"
-                    android:textSize="34px"/>
-
-                <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/trailersgrit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:columnWidth="90dp"
-                    android:numColumns="1"
-                    android:verticalSpacing="10dp"
-                    android:horizontalSpacing="10dp"
-                    android:stretchMode="columnWidth"
-                    android:gravity="left"
                     />
+
+
             </LinearLayout>
         </LinearLayout>
 
