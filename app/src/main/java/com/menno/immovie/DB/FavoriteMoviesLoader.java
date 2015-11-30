@@ -9,8 +9,10 @@ import android.util.Log;
 
 import com.menno.immovie.ContentProvider.ContentProvider;
 import com.menno.immovie.ContentProvider.MovieContract;
+import com.menno.immovie.ContentProvider.ReviewContract;
 import com.menno.immovie.ContentProvider.TrailerContract;
 import com.menno.immovie.Objects.Movie;
+import com.menno.immovie.Objects.Review;
 import com.menno.immovie.Objects.Trailer;
 
 import java.util.ArrayList;
@@ -45,6 +47,27 @@ public class FavoriteMoviesLoader extends AsyncTask<Void, Void, ArrayList<Movie>
         return trailers;
     }
 
+    private ArrayList<Review> GetReviews(String ID)
+    {
+        Uri reviewUri = ReviewContract.CONTENT_URI;
+        ContentResolver contentResolver = activity.getContentResolver();
+
+        String[] reviewArgs = new String[] { ID };
+        Cursor reviewCursor = contentResolver.query( reviewUri, null, ContentProvider.MOVIEID + "=?", reviewArgs, "");
+
+
+        int author = reviewCursor.getColumnIndex(ReviewContract.AUTHOR);
+        int content = reviewCursor.getColumnIndex(ReviewContract.CONTENT);
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        while (reviewCursor.moveToNext()) {
+            Review review = new Review(reviewCursor.getString(author), reviewCursor.getString(content));
+            reviews.add(review);
+        }
+        reviewCursor.close();
+
+        return reviews;
+    }
+
     public  FavoriteMoviesLoader(Activity activity) {
         this.activity = activity;
     }
@@ -72,6 +95,7 @@ public class FavoriteMoviesLoader extends AsyncTask<Void, Void, ArrayList<Movie>
             Movie movie = new Movie(cursor.getInt(id), cursor.getString(name), cursor.getString(overview), cursor.getString(imageUrl), cursor.getInt(rating), cursor.getString(releaseDate), cursor.getString(imageMenuUrl));
             Log.e("er", Integer.toString(GetTrailers(Integer.toString(movie.id)).size()));
             movie.trailers = GetTrailers(Integer.toString(movie.id));
+            movie.reviews = GetReviews(Integer.toString(movie.id));
             movies.add(movie);
         }
 

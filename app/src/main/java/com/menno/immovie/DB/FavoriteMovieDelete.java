@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 
 import com.menno.immovie.ContentProvider.ContentProvider;
 import com.menno.immovie.ContentProvider.MovieContract;
+import com.menno.immovie.ContentProvider.ReviewContract;
 import com.menno.immovie.ContentProvider.TrailerContract;
 import com.menno.immovie.Objects.Movie;
 
@@ -35,6 +36,12 @@ public class FavoriteMovieDelete extends AsyncTask<Movie, Void, Void> {
         String trailerwhere = ContentProvider.MOVIEID + "=?";
         String[] trailerargs = new String[] { Integer.toString(movie.id) };
         contentResolver.delete(TrailerUri, trailerwhere,  trailerargs);
+
+        Uri ReviewUri = ReviewContract.CONTENT_URI;
+        String reviewwhere = ContentProvider.MOVIEID + "=?";
+        String[] reviewargs = new String[] { Integer.toString(movie.id) };
+        contentResolver.delete(ReviewUri, reviewwhere,  reviewargs);
+
 
         return null;
     }
