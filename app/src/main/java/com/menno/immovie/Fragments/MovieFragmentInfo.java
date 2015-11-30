@@ -87,17 +87,17 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
         for (int i = 0; i < trailers.size(); i++) {
             Trailer trailer = trailers.get(i);
 
-            LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.trailersInfo);
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.trailersInfo);
             AddDataToViewButton(linearLayout, trailer.getName(), trailer.getSource());
         }
 
         if (trailers.size() == 0) {
-            LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.trailersInfo);
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.trailersInfo);
             AddDataToView(linearLayout, "No trailers", "");
         }
 
 
-        LinearLayout one = (LinearLayout) getActivity().findViewById(R.id.trailers);
+        LinearLayout one = (LinearLayout) view.findViewById(R.id.trailers);
         one.setVisibility(View.VISIBLE);
     }
 
@@ -105,16 +105,16 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
         for (int i = 0; i < reviews.size(); i++) {
             Review review = reviews.get(i);
 
-            LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.reviewInfo);
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.reviewInfo);
             AddDataToView(linearLayout, review.getAuthor() + ":", review.getContent());
         }
 
         if (reviews.size() == 0) {
-            LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.reviewInfo);
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.reviewInfo);
             AddDataToView(linearLayout, "No reviews", "");
         }
 
-        LinearLayout one = (LinearLayout) getActivity().findViewById(R.id.review);
+        LinearLayout one = (LinearLayout) view.findViewById(R.id.review);
         one.setVisibility(View.VISIBLE);
     }
 
@@ -256,6 +256,11 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
                 TrailerReviewTask task = new TrailerReviewTask();
                 task.delegate = this;
                 task.execute(movie);
+            }
+            else
+            {
+                //Log.e("e", Integer.toString(movie.reviews.size()));
+                OnReveiveTrailerReview(movie);
             }
 
             FavoriteMovieLoader load = new FavoriteMovieLoader(getActivity());

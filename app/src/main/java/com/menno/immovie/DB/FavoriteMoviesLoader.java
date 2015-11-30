@@ -5,9 +5,13 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.menno.immovie.ContentProvider.ContentProvider;
 import com.menno.immovie.ContentProvider.MovieContract;
+import com.menno.immovie.ContentProvider.TrailerContract;
 import com.menno.immovie.Objects.Movie;
+import com.menno.immovie.Objects.Trailer;
 
 import java.util.ArrayList;
 
@@ -18,6 +22,28 @@ public class FavoriteMoviesLoader extends AsyncTask<Void, Void, ArrayList<Movie>
 
     public FavoriteResponse delegate = null;
     private Activity activity;
+
+
+    private ArrayList<Trailer> GetTrailers(String ID)
+    {
+        Uri trailerUri = TrailerContract.CONTENT_URI;
+        ContentResolver contentResolver = activity.getContentResolver();
+
+        String[] trailerArgs = new String[] { ID };
+        Cursor trailerCursor = contentResolver.query( trailerUri, null, ContentProvider.MOVIEID + "=?", trailerArgs, "");
+
+
+        int name = trailerCursor.getColumnIndex(TrailerContract.NAME);
+        int source = trailerCursor.getColumnIndex(TrailerContract.SOURCE);
+        ArrayList<Trailer> trailers = new ArrayList<Trailer>();
+        while (trailerCursor.moveToNext()) {
+            Trailer trailer = new Trailer(trailerCursor.getString(name), trailerCursor.getString(source));
+            trailers.add(trailer);
+        }
+        trailerCursor.close();
+
+        return trailers;
+    }
 
     public  FavoriteMoviesLoader(Activity activity) {
         this.activity = activity;
@@ -44,6 +70,8 @@ public class FavoriteMoviesLoader extends AsyncTask<Void, Void, ArrayList<Movie>
         ArrayList<Movie> movies = new ArrayList<Movie>();
         while (cursor.moveToNext()) {
             Movie movie = new Movie(cursor.getInt(id), cursor.getString(name), cursor.getString(overview), cursor.getString(imageUrl), cursor.getInt(rating), cursor.getString(releaseDate), cursor.getString(imageMenuUrl));
+            Log.e("er", Integer.toString(GetTrailers(Integer.toString(movie.id)).size()));
+            movie.trailers = GetTrailers(Integer.toString(movie.id));
             movies.add(movie);
         }
 
