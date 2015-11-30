@@ -60,6 +60,8 @@ public class Movie  implements Parcelable {
         parcel.writeInt(this.rating);
         parcel.writeString(this.releaseDate);
         parcel.writeString(this.imageMenuUrl);
+        parcel.writeList(reviews);
+        parcel.writeList(trailers);
     }
 
     public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
