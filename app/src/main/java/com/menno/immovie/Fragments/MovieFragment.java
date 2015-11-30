@@ -2,6 +2,7 @@ package com.menno.immovie.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +29,17 @@ public class MovieFragment extends Fragment implements MovieResponse, FavoriteRe
     private MovieAdapter mMovieAdapter;
 
     ArrayList<Movie> movies = new ArrayList<Movie>();
+    private Boolean isFavoriteMode = false;
 
     public void OnReceiveMovies(ArrayList<Movie> output){
+        isFavoriteMode = false;
         mMovieAdapter.clear();
         mMovieAdapter.addAll(output);
     }
 
     public void OnFavorite(ArrayList<Movie> movies)
     {
+        isFavoriteMode = true;
         mMovieAdapter.clear();
         mMovieAdapter.addAll(movies);
     }
@@ -76,6 +80,25 @@ public class MovieFragment extends Fragment implements MovieResponse, FavoriteRe
     public void onSaveInstanceState(Bundle outState){
         outState.putParcelableArrayList("movies", movies);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        if(savedInstanceState != null)
+        {
+            Log.e("erer","erer");
+        }
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /*Reload favorites list*/
+        if(isFavoriteMode)
+        {
+            LoadFavorites();
+        }
     }
 
     @Override

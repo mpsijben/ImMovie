@@ -42,6 +42,8 @@ public class Movie  implements Parcelable {
         this.rating = in.readInt();
         this.releaseDate = in.readString();
         this.imageMenuUrl = in.readString();
+        this.reviews = in.readArrayList(null);
+        this.trailers = in.readArrayList(null);
     }
 
     @Override

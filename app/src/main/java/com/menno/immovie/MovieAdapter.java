@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.menno.immovie.Objects.Movie;
 import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -26,27 +27,31 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Movie movie = getItem(position);
+        final Movie movie = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(
                     R.layout.movie_item, parent, false);
         }
-        ImageView iconView = (ImageView) convertView.findViewById(R.id.movie_image);
+        final ImageView iconView = (ImageView) convertView.findViewById(R.id.movie_image);
 
         Picasso.with(getContext())
            .load("http://image.tmdb.org/t/p/w185" + movie.imageUrl)
                 .fit()
-           .into(iconView, new Callback() {
+                .networkPolicy(NetworkPolicy.OFFLINE)
+                .into(iconView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                    }
 
-               @Override
-               public void onSuccess() {
-               }
-
-               @Override
-               public void onError() {
-               }
-           });
+                    @Override
+                    public void onError() {
+                        //Picasso.with(getContext())
+                          //      .load("http://image.tmdb.org/t/p/w185" + movie.imageUrl)
+                         //       .error(R.drawable.noposteravailable)
+                          //      .into(iconView);
+                    }
+                });
 
                return convertView;
            }
