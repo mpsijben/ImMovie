@@ -8,8 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.menno.immovie.Objects.Movie;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -38,20 +36,8 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         Picasso.with(getContext())
            .load("http://image.tmdb.org/t/p/w185" + movie.imageUrl)
                 .fit()
-                .networkPolicy(NetworkPolicy.OFFLINE)
-                .into(iconView, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
-
-                    @Override
-                    public void onError() {
-                        //Picasso.with(getContext())
-                          //      .load("http://image.tmdb.org/t/p/w185" + movie.imageUrl)
-                         //       .error(R.drawable.noposteravailable)
-                          //      .into(iconView);
-                    }
-                });
+                .error(R.drawable.noposteravailable)
+                .into(iconView);
 
                return convertView;
            }

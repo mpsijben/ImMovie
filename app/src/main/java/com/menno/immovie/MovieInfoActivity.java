@@ -16,6 +16,8 @@ public class MovieInfoActivity extends AppCompatActivity {
 
     private ShareActionProvider mShareActionProvider;
 
+    public MovieFragmentInfo myFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +27,9 @@ public class MovieInfoActivity extends AppCompatActivity {
 
             Bundle arguments = new Bundle();
             arguments.putParcelable(MovieFragmentInfo.MOVIETAG, getIntent().getExtras().getParcelable(MovieFragmentInfo.MOVIETAG));
-            MovieFragmentInfo fragment = new MovieFragmentInfo();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction().add(R.id.fragmentInfo,fragment).commit();
+            myFragment = new MovieFragmentInfo();
+            myFragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentInfo,myFragment).commit();
 
         }
 
@@ -39,6 +41,9 @@ public class MovieInfoActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
+                return true;
+            case R.id.menu_item_share:
+                myFragment.OnShareTrailer();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
