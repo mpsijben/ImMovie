@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,11 +59,9 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (((Button) v).getText().toString().equals("Favorite MOVIE")) {
-                    Log.e("ereree","ere");
                     ((Button) v).setText("UNFAVORITE");
                     new FavoriteMovieStore(getActivity()).execute(movie);
                 } else {
-                    Log.e("ereree",((Button) v).getText().toString());
                     ((Button) v).setText("Favorite MOVIE");
                     new FavoriteMovieDelete(getActivity()).execute(movie);
                 }
@@ -232,6 +229,7 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -243,6 +241,7 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
             reviews = savedInstanceState.getParcelableArrayList("reviews");
             trailers = savedInstanceState.getParcelableArrayList("trailers");
 
+            OnIsFavorite(savedInstanceState.getBoolean("favo"));
         } else {
             Bundle arguments = getArguments();
             if (arguments == null) {
@@ -284,6 +283,9 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
         outState.putParcelable("movie", movie);
         outState.putParcelableArrayList("reviews", reviews);
         outState.putParcelableArrayList("trailers", trailers);
+
+        Button button = (Button) view.findViewById(R.id.favorite);
+        outState.putBoolean("favo", !button.getText().toString().equals("Favorite MOVIE"));
         super.onSaveInstanceState(outState);
     }
 

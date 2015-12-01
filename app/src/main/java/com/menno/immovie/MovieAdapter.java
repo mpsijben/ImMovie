@@ -32,13 +32,15 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                     R.layout.movie_item, parent, false);
         }
         final ImageView iconView = (ImageView) convertView.findViewById(R.id.movie_image);
-
         Picasso.with(getContext())
            .load("http://image.tmdb.org/t/p/w185" + movie.imageUrl)
+                .centerCrop()
                 .fit()
                 .error(R.drawable.noposteravailable)
                 .into(iconView);
 
                return convertView;
-           }
+
     }
+}
+

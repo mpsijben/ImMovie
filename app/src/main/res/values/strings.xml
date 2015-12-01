@@ -3,6 +3,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="titlbar_popular">Popular</string>
+    <string name="titlbar_rating">Rating</string>
+    <string name="titlbar_favorite">Favorite</string>
 
     <string name="title_activity_main">I\'m movie</string>
     <string name="title_activity_movieinfo">Info</string>

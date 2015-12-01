@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements MovieFragment.Cal
                     .commit();
         }
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(R.string.title_activity_main);
+        actionBar.setTitle(R.string.titlbar_popular);
 
         tableMode = findViewById(R.id.fragmentInfo) != null;
     }
@@ -69,14 +69,20 @@ public class MainActivity extends AppCompatActivity implements MovieFragment.Cal
 
         if (id == R.id.menuSortPopularity) {
             myFragment.LoadMovies();
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle(R.string.titlbar_popular);
             return true;
         }
         else if(id == R.id.menuSortRating) {
             myFragment.LoadMovies("vote_average.desc");
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle(R.string.titlbar_rating);
             return true;
         }
         else if(id == R.id.menuFavorite) {
             myFragment.LoadFavorites();
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle(R.string.titlbar_favorite);
             return true;
         }
 
