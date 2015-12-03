@@ -34,7 +34,7 @@ import java.util.ArrayList;
  * Created by Menno on 25-11-2015.
  */
 public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse, IsFavoriteResponse {
-    public static String MOVIETAG = "MTAG";
+    public static String MOVIETAG = "MinfoTAG";
 
     private Movie movie;
     private ArrayList<Trailer> trailers;
@@ -70,6 +70,8 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
     }
 
     public void OnReveiveTrailerReview(Movie output) {
+        if (output == null) return;
+
         trailers = output.trailers;
         reviews = output.reviews;
         loadTrailers();

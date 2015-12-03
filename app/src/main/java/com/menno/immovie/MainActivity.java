@@ -48,9 +48,14 @@ public class MainActivity extends AppCompatActivity implements MovieFragment.Cal
             myFragment = new MovieFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragmentcontainer, myFragment)
+                    .add(R.id.fragmentcontainer, myFragment, MovieFragment.MOVIETAG)
                     .commit();
         }
+        else
+        {
+            myFragment = (MovieFragment)getSupportFragmentManager().findFragmentByTag(MovieFragment.MOVIETAG);
+        }
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(R.string.titlbar_popular);
 

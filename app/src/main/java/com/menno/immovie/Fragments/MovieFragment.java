@@ -28,10 +28,15 @@ public class MovieFragment extends Fragment implements MovieResponse, FavoriteRe
 
     private MovieAdapter mMovieAdapter;
 
+    public static String MOVIETAG = "MTAG";
+
     ArrayList<Movie> movies = new ArrayList<Movie>();
     private Boolean isFavoriteMode = false;
 
     public void OnReceiveMovies(ArrayList<Movie> output){
+        if(output == null)
+            return;
+
         isFavoriteMode = false;
         mMovieAdapter.clear();
         mMovieAdapter.addAll(output);

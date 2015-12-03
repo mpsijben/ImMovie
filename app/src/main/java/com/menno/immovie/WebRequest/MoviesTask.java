@@ -1,7 +1,6 @@
 package com.menno.immovie.WebRequest;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.menno.immovie.Objects.Movie;
 
@@ -47,11 +46,12 @@ public class MoviesTask extends AsyncTask<String, Void, ArrayList<Movie>> {
         final String SORT_PARAM = "sort_by";
 
         String jsonStr = JSON.getJSONInfo("http://api.themoviedb.org/3/discover/movie?", SORT_PARAM, sortString);
+        if(jsonStr == null)
+            return null;
 
         try {
             return getMoviesFromJson(jsonStr);
         } catch (JSONException e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
             e.printStackTrace();
         }
 

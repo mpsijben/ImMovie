@@ -29,7 +29,12 @@ public class MovieInfoActivity extends AppCompatActivity {
             arguments.putParcelable(MovieFragmentInfo.MOVIETAG, getIntent().getExtras().getParcelable(MovieFragmentInfo.MOVIETAG));
             myFragment = new MovieFragmentInfo();
             myFragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction().add(R.id.fragmentInfo,myFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentInfo,myFragment, MovieFragmentInfo.MOVIETAG ).commit();
+
+        }
+        else
+        {
+            myFragment = (MovieFragmentInfo)getSupportFragmentManager().findFragmentByTag(MovieFragmentInfo.MOVIETAG);
 
         }
 

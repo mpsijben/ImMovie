@@ -25,6 +25,8 @@ public class TrailerReviewTask extends AsyncTask<Movie, Void, Movie> {
 
 
         String jsonTrailerReview = getTrailersAndReview(movie.id);
+        if (jsonTrailerReview == null) return null;
+
         JSONObject jsonObject = new JSONObject(jsonTrailerReview);
         JSONObject trailerObjects = jsonObject.getJSONObject("trailers");
         JSONArray trailersArray = trailerObjects.getJSONArray("youtube");
@@ -61,7 +63,7 @@ public class TrailerReviewTask extends AsyncTask<Movie, Void, Movie> {
     @Override
     protected Movie doInBackground(Movie... movie) {
 
-        if (movie.length == 0) return null;
+        if (movie.length == 0 || movie[0] == null) return null;
 
         try {
             return getMoviesFromJson(movie[0]);
