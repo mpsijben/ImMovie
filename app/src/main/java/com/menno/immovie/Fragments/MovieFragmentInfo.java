@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -20,6 +24,7 @@ import com.menno.immovie.DB.FavoriteMovieDelete;
 import com.menno.immovie.DB.FavoriteMovieLoader;
 import com.menno.immovie.DB.FavoriteMovieStore;
 import com.menno.immovie.DB.IsFavoriteResponse;
+import com.menno.immovie.MainActivity;
 import com.menno.immovie.Objects.Movie;
 import com.menno.immovie.Objects.Review;
 import com.menno.immovie.Objects.Trailer;
@@ -231,6 +236,23 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
         }
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_info, menu);
+        Log.e("erer","er");
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_share:
+                OnShareTrailer();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -270,6 +292,11 @@ public class MovieFragmentInfo extends Fragment implements TrailerReviewResponse
         }
 
         loadMovie();
+
+        if(MainActivity.tableMode)
+        {
+            setHasOptionsMenu(true);
+        }
 
         if (savedInstanceState != null) {
             loadTrailers();
